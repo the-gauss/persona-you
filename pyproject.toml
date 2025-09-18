@@ -1,0 +1,15 @@
+[project]
+name = "persona-you"
+version = "0.0.0"
+description = "Personal chat personality scaffolding"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+persona-you = "persona_you.cli:main"
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
