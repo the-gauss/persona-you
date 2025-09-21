@@ -17,11 +17,14 @@ dist/
 .vscode/
 .idea/
 
-# Data artifacts
-data/processed/
-data/memory/
-data/raw/
+# Data artifacts (keep structure via .gitkeep)
+# Ignore everything under data/
+data/**
+# Allow descending into data/ so exceptions apply in subdirs
+!data/**/
+# Keep placeholder files so empty dirs are tracked
+!data/.gitkeep
+!data/**/.gitkeep
 
 # Logs
 logs/
-
