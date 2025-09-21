@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "persona-you://schema/memory.v1.json",
+  "title": "Persona Memory (v1)",
+  "description": "Stable facts and style snippets for a persona",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "v1" },
+    "person": { "type": "string", "description": "Persona key (e.g., alice_w)" },
+    "updated_at": { "type": "string", "format": "date-time" },
+    "facts": {
+      "type": "array",
+      "description": "Stable facts/preferences extracted from history or provided by user",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "type": { "type": "string", "description": "category/type of fact (e.g., birthday, food_pref)" },
+          "key": { "type": "string" },
+          "value": { "oneOf": [ {"type": "string"}, {"type": "number"}, {"type": "boolean"}, {"type": "object"}, {"type": "array"} ] },
+          "confidence": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+          "source_ids": { "type": "array", "items": { "type": "string" } },
+          "notes": { "type": "string" }
+        },
+        "required": ["id", "type", "key", "value"]
+      }
+    },
+    "style_snippets": {
+      "type": "array",
+      "description": "Short phrases that reflect tone/voice",
+      "items": { "type": "string" }
+    },
+    "notes": { "type": "string" }
+  },
+  "required": ["schema_version", "person", "updated_at", "facts", "style_snippets"]
+}
+

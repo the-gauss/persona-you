@@ -25,6 +25,8 @@ data/**
 # Keep placeholder files so empty dirs are tracked
 !data/.gitkeep
 !data/**/.gitkeep
+# Track versioned schemas
+!data/schema/**
 
 # Logs
 logs/
