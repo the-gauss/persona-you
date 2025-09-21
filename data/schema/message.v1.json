@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "persona-you://schema/message.v1.json",
+  "title": "Processed Message (v1)",
+  "description": "Normalized message record used in data/processed/<person>.jsonl",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "v1" },
+    "id": { "type": "string", "description": "Stable message id (source+offset or UUID)" },
+    "conversation_id": { "type": ["string", "null"], "description": "Thread or chat id if available" },
+    "timestamp": { "type": "string", "format": "date-time", "description": "ISO 8601 UTC timestamp" },
+    "sender": { "type": "string", "description": "Canonicalized sender label (e.g., person key)" },
+    "reciever": { "type": "string", "description": "Canonicalized reciever label (e.g., person or group)" },
+    "text": { "type": "string", "description": "Message text with emojis preserved" },
+    "source": { "type": "string", "enum": ["whatsapp", "imessage"], "description": "Origin of the message" },
+    "meta": {
+      "type": "object",
+      "description": "Optional metadata from source",
+      "additionalProperties": true,
+      "properties": {
+        "reactions": { "type": "array", "items": { "type": "string" } },
+        "attachments": { "type": "array", "items": { "type": "string" } },
+        "language": { "type": "string" },
+        "redactions": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "ingest_version": { "type": "string", "description": "Version/tag of the ingestion pipeline" }
+  },
+  "required": ["schema_version", "id", "timestamp", "speaker", "text", "source", "ingest_version"]
+}
+
